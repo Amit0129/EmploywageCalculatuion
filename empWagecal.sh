@@ -3,15 +3,24 @@
 echo "Welcome to Employee Wage Computation Program on Master Branch"
 
 
-isPresent=1;
-randomCheck=$((RANDOM%2));
+isPartTime=1;
+isFullTime=2;
+randomCheck=$((RANDOM%3));
+empRatePerHr=20;
 
-if [ $isPresent -eq $randomCheck ]
+
+if [ $isPartTime -eq $randomCheck ]
 then
-	empRatePerHr=20;
-	empHrs=8;
-	salary=$(($empRatePerHr*$empHrs))
+        empHrs=4;
+
+elif [ $isFullTime -eq $randomCheck ]
+then
+        empHrs=8;
+
 else
-	salary=0;
+        empHrs=0;
+
 fi
+
+salary=$(($empHrs*$empRatePerHr));
 
