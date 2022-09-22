@@ -5,7 +5,7 @@ echo "Welcome to Employee Wage Computation Program on Master Branch"
 
 isPartTime=1;
 isFullTime=2;
-MaxHrs_inMonth=100;
+MaxHrs_inMonth=10;
 empRatePerHr=20;
 numWorkingDays=20;
 totalEmpHr=0;
@@ -29,7 +29,10 @@ function wrkHrs() {
 while [[ $totalempHrs -lt $MaxHrs_inMonth &&
          $totalWorkingDays -lt $numWorkingDays ]]
 do
-      ((totalWorkingDays++))
-      empHrs="$( wrkHrs $((RANDOM%3)) )"
-      totalWorkHrs=$(($totalempHrs+$empHrs))
+      	((totalWorkingDays++))
+      	empHrs="$( wrkHrs $((RANDOM%3)) )"
+      	totalempHrs=$(($totalempHrs+$empHrs))
+	dailyWage[$totalWorkingDays]=$(($empHrs*$empRatePerHr))
 done
+totalSalary=$(($totalempHrs*$empRatePerHr))
+echo ${dailyWage[@]}
