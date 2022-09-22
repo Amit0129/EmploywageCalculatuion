@@ -5,35 +5,31 @@ echo "Welcome to Employee Wage Computation Program on Master Branch"
 
 isPartTime=1;
 isFullTime=2;
+MaxHrs_inMonth=100;
 empRatePerHr=20;
-numWorkingDay=20;
-maxHourInMonth=100;
-
+numWorkingDays=20;
 totalEmpHr=0;
-totalWorkingDay=0;
+totalWorkingDays=0;
 
+function wrkHrs() {
+   case $1 in
+       $isFullTime)
+         empHrs=8
+          ;;
+       $isPartTime)
+         empHrs=4
+          ;;
+       *)
+         empHrs=0
+          ;;
+   esac
+ echo $empHrs;
+}
 
-
-
-
-while [[ $totalEmpHr -lt $maxHourInMonth && $totalWorkingDay -lt $numWorkingDay ]]
+while [[ $totalempHrs -lt $MaxHrs_inMonth &&
+         $totalWorkingDays -lt $numWorkingDays ]]
 do
-        (( totalWorkingDay++ ))
-        empCheck=$((RANDOM%3));
-        case $empCheck in
-                $isFullTime)
-                        empHrs=8
-                        ;;
-                $isPartTime)
-                        empHrs=4
-                        ;;
-                *)
-                empHrs=0
-                        ;;
-        esac
-        totalEmpHr=$(( $totalEmpHr+$empHrs ))
+      ((totalWorkingDays++))
+      empHrs="$( wrkHrs $((RANDOM%3)) )"
+      totalWorkHrs=$(($totalempHrs+$empHrs))
 done
-
-
-totalSalary=$(( $empRatePerHr*$totalEmpHr ))
-echo $totalSalary
